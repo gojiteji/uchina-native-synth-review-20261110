@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# Search exclusion is declared with the noindex meta tag in index.html.
