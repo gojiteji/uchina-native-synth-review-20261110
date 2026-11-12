@@ -22,6 +22,8 @@ main { max-width:820px; margin:0 auto; padding:12px 16px 80px; }
 .convo { margin:22px 0; }
 .convo h2 { font-size:1rem; margin:0 0 10px; }
 article { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 14px 10px; margin:0 0 12px; }
+.item-number { font-size:1.65rem; font-weight:750; color:var(--acc); line-height:1.25; margin:0 0 8px; }
+.guide ol > li::marker { font-size:1.15em; font-weight:700; color:var(--acc); }
 .meta { font-size:.8rem; color:var(--muted); margin-bottom:6px; }
 .text { font-size:1.12rem; margin:0 0 4px; }
 .kana { font-size:.95rem; color:#333; letter-spacing:.02em; margin:0 0 10px; }
@@ -71,9 +73,9 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline:3px solid
     <li><strong>台本と「指定の読み」を見て、▶で音声を再生する。</strong><br>1つの発話に音声が2つある場合は、両方をそれぞれ確認してください。「指定の読みで合成」と「表記のまま合成」は、作り方が違う音声です。</li>
     <li><strong>音声ごとに「① 読みの正しさ」「② 話し方の自然さ」を1つずつ選ぶ。</strong><br>①は言葉の抜け・言い間違い・読みの違い、②は沖縄の話し方としての抑揚や語尾を見ます。読みは正しくても、標準語っぽく聞こえたら「標準語寄り」で大丈夫です。</li>
     <li><strong>気になるところだけ、コメントを書く（任意）。</strong><br>例：「『あいやー』の抑揚が違う」「この語尾は普段使わない」。迷う項目は無理に選ばず、コメントに「判断が難しい」と書いてください。指定の読み自体に違和感がある場合もコメントへお願いします。</li>
-    <li><strong>区切りがついたら「回答ファイルを共有」を押し、依頼者へ返す。</strong><br>スマホの共有画面が開いたら、普段やり取りしているLINE・メール等を選び、このページを送ってきた人宛てに送信してください。途中までの回答でも返せます。</li>
+    <li><strong>区切りがついたら、回答をファイルに保存して依頼者に共有してください。</strong><br>下の「回答をファイルに保存」を押し、保存したファイルをLINEやメールなどで依頼者に共有してください。途中までの回答でも保存できます。対応するスマホでは「回答ファイルを共有」から直接共有することもできます。</li>
   </ol>
-  <p class="tip"><strong>選択しただけでは、依頼者に回答は届きません。</strong><br>最後に共有先のアプリで送信を完了してください。共有できない端末ではファイルを保存し、そのファイルをメッセージに添付して返します。</p>
+  <p class="tip"><strong>選択しただけでは、依頼者に回答は届きません。</strong><br>最後に共有先のアプリで送信を完了してください。共有できない端末ではファイルを保存し、そのファイルをメッセージに添付して共有してください。</p>
   <button class="primary" id="startBtn" type="button">確認を始める／続きから再開</button>
   <details><summary>中断・保存・音声について</summary>
     <p>同じ端末・同じブラウザ・同じURLで開くと続きから再開できます。別の端末やブラウザには引き継がれません。プライベートブラウズやブラウザのデータ削除で回答が消える場合があるので、途中でも共有・保存してください。</p>
@@ -82,14 +84,14 @@ button:focus-visible, a:focus-visible, summary:focus-visible { outline:3px solid
 </section>
 <div id="main"></div>
 <section class="guide" id="finish" aria-labelledby="finishTitle">
-  <h2 id="finishTitle">確認が終わったら、回答を返してください</h2>
+  <h2 id="finishTitle">回答をファイルに保存し、依頼者に共有してください</h2>
   <p id="finishCount"></p>
-  <p>「回答ファイルを共有」→ LINEやメール等を選ぶ → このページの依頼者を選ぶ → アプリ側で送信、で完了です。途中の回答も送れます。</p>
-  <button class="primary" id="shareBottom" type="button">回答ファイルを共有</button>
+  <p>下の「回答をファイルに保存」を押してください。保存したファイルを、普段やり取りしているLINEやメールなどに添付して、依頼者に共有をお願いします。途中までの回答も保存・共有できます。</p>
+  <div class="toolbar"><button class="primary" id="exportJson" type="button">回答をファイルに保存</button><button id="shareBottom" type="button">回答ファイルを共有（対応端末）</button></div>
   <p id="deliveryStatus" role="status">回答は自動送信されません。</p>
-  <details id="downloadHelp"><summary>共有できない場合：ファイルを保存して返す</summary>
+  <details id="downloadHelp"><summary>保存したファイルの共有方法</summary>
     <ol><li>「回答をファイルに保存」を押します。</li><li>普段やり取りしているLINEやメールで、依頼者との会話を開きます。</li><li>添付／＋ボタンから、ダウンロードや「ファイル」に入った <strong>uchina-native-review-results.json</strong> を選んで送ります。中身を開いたり編集したりする必要はありません。</li></ol>
-    <div class="toolbar"><button id="exportJson" type="button">回答をファイルに保存（JSON）</button><button id="exportCsv" type="button">表計算用に保存（CSV）</button></div>
+    <div class="toolbar"><button id="exportCsv" type="button">表計算用に保存（CSV）</button></div>
   </details>
   <details><summary>このブラウザの回答を消す</summary><p>保存・共有が済んでいるか確認してください。</p><button id="clearBtn" type="button">この端末の判定を消す</button></details>
 </section>
@@ -130,8 +132,8 @@ function updateProgress() {
   const n = ITEMS.filter(x => judged(x.id)).length;
   document.getElementById("bar").style.width = (100 * n / ITEMS.length) + "%";
   document.getElementById("count").textContent = "確認済み " + n + " / " + ITEMS.length;
-  document.getElementById("finishCount").textContent = n === ITEMS.length ? "全104発話の回答がそろいました。ご協力ありがとうございます。最後に下のボタンから返送してください。" : n + " / 104発話を確認済みです。未回答があっても、今の回答を返せます。";
-  document.getElementById("nextBtn").textContent = n === ITEMS.length ? "回答の返し方へ" : "次の未回答へ";
+  document.getElementById("finishCount").textContent = n === ITEMS.length ? "全104発話の回答がそろいました。ご協力ありがとうございます。下のボタンで回答をファイルに保存し、依頼者に共有してください。" : n + " / 104発話を確認済みです。未回答があっても、今の回答をファイルに保存して共有できます。";
+  document.getElementById("nextBtn").textContent = n === ITEMS.length ? "保存・共有の手順へ" : "次の未回答へ";
   for (const item of ITEMS) {
     const el = document.getElementById("card-" + item.id);
     if (el) el.classList.toggle("done", judged(item.id));
@@ -200,14 +202,17 @@ function render() {
     art.innerHTML = "";
     const meta = document.createElement("div");
     meta.className = "meta";
-    meta.textContent = idx + " / " + ITEMS.length + "　" + item.id + "　話者" + item.speaker + "　" + (item.paired_orthographic ? "音声2つ・各2項目" : "音声1つ・2項目");
+    const number = document.createElement("div");
+    number.className = "item-number";
+    number.textContent = idx + " / " + ITEMS.length;
+    meta.textContent = item.id + "　話者" + item.speaker + "　" + (item.paired_orthographic ? "音声2つ・各2項目" : "音声1つ・2項目");
     const text = document.createElement("p");
     text.className = "text";
     text.textContent = item.text;
     const kana = document.createElement("p");
     kana.className = "kana";
     kana.textContent = "指定の読み：" + item.spoken_kana;
-    art.append(meta, text, kana);
+    art.append(number, meta, text, kana);
     art.append(conditionBlock("音声：指定の読みで合成", item.phonetic_wav, item.id, "ph"));
     if (item.orthographic_wav) {
       art.append(conditionBlock("音声：表記のまま合成", item.orthographic_wav, item.id, "or"));
@@ -281,7 +286,7 @@ async function shareAnswers() {
   }
   download("uchina-native-review-results.json", JSON.stringify(exportObj(), null, 2), "application/json");
   document.getElementById("downloadHelp").open = true;
-  status.textContent = "この端末では直接共有できないため、ファイルの保存を開始しました。下の手順で依頼者へ添付して返してください。まだ送信は完了していません。";
+  status.textContent = "この端末では直接共有できないため、ファイルの保存を開始しました。下の手順で保存したファイルを依頼者に共有してください。まだ送信は完了していません。";
   document.getElementById("finish").scrollIntoView({behavior:"smooth"});
 }
 document.getElementById("shareBtn").addEventListener("click", shareAnswers);
